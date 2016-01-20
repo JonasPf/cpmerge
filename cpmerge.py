@@ -21,11 +21,7 @@ from docopt import docopt
 
 __version__ = '0.5'
 
-# TODO:
-# pypi
-# add pep8
-
-TRAY_TOOLTIP ='cpmerge - Clipboard Manager'
+TRAY_TOOLTIP = 'cpmerge - Clipboard Manager'
 TRAY_ICON = os.path.join(os.path.dirname(__file__), 'icon.png')
 TIMER_ID = 100
 MAX_HISTORY = 10
@@ -36,6 +32,7 @@ history = []
 primary_cache = None
 primary_mouse_location = None
 arguments = None
+
 
 def get_label(content):
     # Use the first visible characters as label
@@ -49,11 +46,13 @@ def get_label(content):
     else:
         return lines[0]
 
+
 def create_menu_item(menu, label, func):
     item = wx.MenuItem(menu, -1, label)
     menu.Bind(wx.EVT_MENU, func, id=item.GetId())
     menu.AppendItem(item)
     return item
+
 
 class TaskBarIcon(wx.TaskBarIcon):
     def __init__(self, frame):
@@ -63,11 +62,9 @@ class TaskBarIcon(wx.TaskBarIcon):
         self.Bind(wx.EVT_TASKBAR_LEFT_DOWN, self.on_left_down)
 
     def CreatePopupMenu(self):
-        global history
-
         menu = wx.Menu()
         for content in history:
-            func = functools.partial(self.on_history_chosen, content=content) # Trap the content into a function
+            func = functools.partial(self.on_history_chosen, content=content)  # Trap the content into a function
             create_menu_item(menu, get_label(content), func)
 
         if history:
@@ -93,6 +90,7 @@ class TaskBarIcon(wx.TaskBarIcon):
         wx.CallAfter(self.Destroy)
         self.frame.Close()
 
+
 def get_clipboard(use_primary=False):
     if not wx.TheClipboard.IsOpened():
         do = wx.TextDataObject()
@@ -103,6 +101,7 @@ def get_clipboard(use_primary=False):
         return do.GetText()
     return None
 
+
 def set_clipboard(content, use_primary=False):
     global current_content
     global primary_cache
@@ -112,12 +111,13 @@ def set_clipboard(content, use_primary=False):
         do.SetText(content)
         wx.TheClipboard.UsePrimarySelection(use_primary)
         wx.TheClipboard.Open()
-        success = wx.TheClipboard.SetData(do)
+        wx.TheClipboard.SetData(do)
         wx.TheClipboard.Close()
 
         current_content = content
         if use_primary:
             primary_cache = None
+
 
 def add_history(content):
     global history
@@ -128,7 +128,8 @@ def add_history(content):
             history.remove(content)
 
         history.insert(0, content)
-        history = history[0:MAX_HISTORY] # Make sure we only keep 10
+        history = history[0:MAX_HISTORY]  # Make sure we only keep 10
+
 
 def distance(p1, p2):
     if p1 is None or p2 is None:
@@ -152,13 +153,13 @@ def on_timer(event):
         add_history(content)
         if arguments['-v']:
             print(u"Copy from clipboard to primary: '{}'".format(get_label(content)))
-        
+
     # copy primary -> cache
     content = get_clipboard(use_primary=True)
     if has_changed(content) and content != primary_cache:
         primary_cache = content
         primary_mouse_location = wx.GetMousePosition()
-    
+
     # copy cache -> clipboard
     dist = int(arguments['--distance']) if arguments['--distance'] else 20
     if has_changed(primary_cache) and distance(wx.GetMousePosition(), primary_mouse_location) > dist:
@@ -170,13 +171,14 @@ def on_timer(event):
     if arguments['-v'] > 1 and has_changed(primary_cache):
         print(u"Distance: {}".format(distance(wx.GetMousePosition(), primary_mouse_location)))
 
+
 def main():
     global arguments
 
     arguments = docopt(__doc__, version=__version__)
 
     app = wx.App(False)
-    frame=wx.Frame(None)
+    frame = wx.Frame(None)
     app.SetTopWindow(frame)
 
     if not arguments['--nogui']:

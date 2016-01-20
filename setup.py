@@ -25,6 +25,6 @@ setup(name="cpmerge",
       long_description=long_description,
       license="MIT",
       classifiers=classifiers,
-      install_requires=[ 'docopt' ],
-      entry_points={ 'console_scripts': ['cpmerge = cpmerge:main'] }
-     )
+      install_requires=['docopt'],
+      entry_points={'console_scripts': ['cpmerge = cpmerge:main']}
+      )
