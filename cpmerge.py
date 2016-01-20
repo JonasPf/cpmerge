@@ -22,10 +22,8 @@ from docopt import docopt
 __version__ = '0.5'
 
 # TODO:
-# python3 compatibility
 # egg / pypi
 # documentation
-# add headless mode
 # add pep8
 # test with out of the box wxpythoN
 # check memory consumption on vanilla ubuntu
@@ -41,7 +39,6 @@ current_content = None
 history = []
 primary_cache = None
 primary_mouse_location = None
-taskbar = None
 arguments = None
 
 def get_label(content):
@@ -178,7 +175,6 @@ def on_timer(event):
         print(u"Distance: {}".format(distance(wx.GetMousePosition(), primary_mouse_location)))
 
 def main():
-    global taskbar
     global arguments
 
     arguments = docopt(__doc__, version=__version__)
@@ -186,7 +182,10 @@ def main():
     app = wx.App(False)
     frame=wx.Frame(None)
     app.SetTopWindow(frame)
-    taskbar = TaskBarIcon(frame)
+
+    if not arguments['--nogui']:
+        TaskBarIcon(frame)
+
     timer = wx.Timer(frame, TIMER_ID)
     frame.Bind(wx.EVT_TIMER, on_timer, timer)
     timer.Start(200)
