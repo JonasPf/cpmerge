@@ -5,7 +5,6 @@ import cpmerge
 
 classifiers = [
     "Programming Language :: Python :: 2.7",
-    "Programming Language :: Python :: 3",
     "Intended Audience :: End Users/Desktop",
     "License :: OSI Approved :: MIT License",
     "Operating System :: POSIX :: Linux",

@@ -25,9 +25,8 @@ __version__ = '0.5'
 # egg / pypi
 # documentation
 # add pep8
-# test with out of the box wxpythoN
+# test with out of the box wxpython
 # check memory consumption on vanilla ubuntu
-# find other icon
 
 TRAY_TOOLTIP ='cpmerge - Clipboard Manager'
 TRAY_ICON = os.path.join(os.path.dirname(__file__), 'icon.png')
