@@ -58,6 +58,6 @@ Py_mem.py tells me that cpmerge uses 35.8 MB of memory. While this is not a huge
 
 Similar tools (none of them supports the mouse movement before PRIMARY -> CLIPBOARD as far as I'm aware) are listed on: https://wiki.archlinux.org/index.php/clipboard
 
-Homepage: http://jonaspfannschmidt.com/cpmerge
-Code: http://github.com/jonaspf/cpmerge
-Icon from: http://led24.de/iconset/
+- Homepage: http://jonaspfannschmidt.com/cpmerge
+- Code: http://github.com/jonaspf/cpmerge
+- Icon from: http://led24.de/iconset/
