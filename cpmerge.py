@@ -19,7 +19,7 @@ import functools
 import os.path
 from docopt import docopt
 
-__version__ = '0.5'
+__version__ = '1.0'
 
 TRAY_TOOLTIP = 'cpmerge - Clipboard Manager'
 TRAY_ICON = os.path.join(os.path.dirname(__file__), 'icon.png')
