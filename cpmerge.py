@@ -22,11 +22,8 @@ from docopt import docopt
 __version__ = '0.5'
 
 # TODO:
-# egg / pypi
-# documentation
+# pypi
 # add pep8
-# test with out of the box wxpython
-# check memory consumption on vanilla ubuntu
 
 TRAY_TOOLTIP ='cpmerge - Clipboard Manager'
 TRAY_ICON = os.path.join(os.path.dirname(__file__), 'icon.png')

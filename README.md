@@ -13,10 +13,11 @@ If run with GUI it also keeps track of the last 10 clipboard entries. A taskbar 
 # Installation
 
 Python 2.7 should already be installed on most systems.
-wxPython needs to be installed as well. On my Ubuntu machine this can be done with:
+wxPython and pip need to be installed as well. On my Ubuntu machine (with Universe activated) this can be done with:
 
 ```
-
+sudo apt-get install python-pip -y
+sudo apt-get install python-wxgtk2.8 -y
 ```
 
 After those requirements are installed, just run:
@@ -33,7 +34,7 @@ cpmerge
 
 # Configuration
 
-To run it without the GUI and history: 
+To run it without tray icon and history: 
 
 ```
 cpmerge --nogui
@@ -52,6 +53,8 @@ cpmerge -vv
 ```
 
 # Other stuff
+
+Py_mem.py tells me that cpmerge uses 35.8 MB of memory. While this is not a huge amount by todays standard I still consider it a lot for the simple task. If you know a tool with similar features which uses less resources, please let me know.
 
 Similar tools (none of them supports the mouse movement before PRIMARY -> CLIPBOARD as far as I'm aware) are listed on: https://wiki.archlinux.org/index.php/clipboard
 
