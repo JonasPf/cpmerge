@@ -12,6 +12,7 @@ Options:
   --version       Show version.
 
 """
+from __future__ import print_function
 import wx
 import math
 import functools
@@ -91,7 +92,7 @@ class TaskBarIcon(wx.TaskBarIcon):
 
     def on_history_chosen(self, event, content):
         if arguments['-v']:
-            print u"Populate clipboard and primary from history: '{}'".format(get_label(content))
+            print(u"Populate clipboard and primary from history: '{}'".format(get_label(content)))
         set_clipboard(content, use_primary=False)
         set_clipboard(content, use_primary=True)
 
@@ -157,7 +158,7 @@ def on_timer(event):
         set_clipboard(content, use_primary=True)
         add_history(content)
         if arguments['-v']:
-            print u"Copy from clipboard to primary: '{}'".format(get_label(content))
+            print(u"Copy from clipboard to primary: '{}'".format(get_label(content)))
         
     # copy primary -> cache
     content = get_clipboard(use_primary=True)
@@ -171,10 +172,10 @@ def on_timer(event):
         set_clipboard(primary_cache, use_primary=False)
         add_history(primary_cache)
         if arguments['-v']:
-            print u"Copy from primary to clipboard: '{}'".format(get_label(content))
+            print(u"Copy from primary to clipboard: '{}'".format(get_label(content)))
 
     if arguments['-v'] > 1 and has_changed(primary_cache):
-        print u"Distance: {}".format(distance(wx.GetMousePosition(), primary_mouse_location))
+        print(u"Distance: {}".format(distance(wx.GetMousePosition(), primary_mouse_location)))
 
 def main():
     global taskbar
