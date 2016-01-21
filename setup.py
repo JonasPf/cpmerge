@@ -1,7 +1,7 @@
 from __future__ import with_statement
 from setuptools import setup
 
-import cpmerge
+from cpmerge import cpmerge
 
 classifiers = [
     "Programming Language :: Python :: 2.7",
@@ -12,7 +12,7 @@ classifiers = [
     "Environment :: X11 Applications"
 ]
 
-with open("README.md", "r") as fp:
+with open("README", "r") as fp:
     long_description = fp.read()
 
 setup(name="cpmerge",
@@ -20,11 +20,12 @@ setup(name="cpmerge",
       author="Jonas Pfannschmidt",
       author_email="jonas.pfannschmidt@gmail.com",
       url="http://jonaspfannschmidt.com/cpmerge",
-      py_modules=["cpmerge"],
+      packages=['cpmerge'],
+      package_data={'cpmerge': ['icon.png']},
       description="A simple clipboard manager to synchronize the CLIPBOARD and PRIMARY selection under linux",
       long_description=long_description,
       license="MIT",
       classifiers=classifiers,
       install_requires=['docopt'],
-      entry_points={'console_scripts': ['cpmerge = cpmerge:main']}
+      entry_points={'console_scripts': ['cpmerge = cpmerge.cpmerge:main']},
       )
